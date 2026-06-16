@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>موکو دانلودر — دانلودر رایگان رسانه</title>
+    <title>موکو دانلودر — دانلودر رایگان </title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,43 +70,6 @@
             height: 45px;
             width: auto;
             display: block;
-        }
-
-        .header-search {
-            flex: 1;
-            max-width: 400px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.7rem 1rem 0.7rem 2.5rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-family: inherit;
-            transition: all 0.2s ease;
-            outline: none;
-            border: none;
-            background: #f1f5f9;
-        }
-
-        body.dark-mode .search-input {
-            background: #1e293b;
-            color: #e2e8f0;
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px #2563eb;
-        }
-
-        .header-search svg {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.5;
-            pointer-events: none;
         }
 
         .desktop-nav {
@@ -265,9 +228,6 @@
         @media (max-width: 768px) {
             .glass-header {
                 padding: 0.6rem 1rem;
-            }
-            .header-search {
-                display: none;
             }
             .desktop-nav .nav-link:not(.theme-toggle-btn) {
                 display: none;
@@ -738,14 +698,6 @@
             <a href="https://dl.moku.ir/">
                 <img src="/static/logo.png" alt="موکو دانلودر" onerror="this.src='https://dl.moku.ir/static/logo.png'">
             </a>
-        </div>
-
-        <div class="header-search">
-            <input type="text" id="globalSearch" class="search-input" placeholder="جستجو در فایل‌ها...">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
         </div>
 
         <div class="desktop-nav">
