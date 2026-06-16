@@ -72,43 +72,6 @@
             display: block;
         }
 
-        .header-search {
-            flex: 1;
-            max-width: 400px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.7rem 1rem 0.7rem 2.5rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-family: inherit;
-            transition: all 0.2s ease;
-            outline: none;
-            border: none;
-            background: #f1f5f9;
-        }
-
-        body.dark-mode .search-input {
-            background: #1e293b;
-            color: #e2e8f0;
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px #2563eb;
-        }
-
-        .header-search svg {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
         .desktop-nav {
             display: flex;
             gap: 0.5rem;
@@ -272,13 +235,34 @@
             border-color: rgba(37, 99, 235, 0.2);
         }
 
-        .donate-box .icon-big {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        .donate-box .icon-svg {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem auto;
+            color: #2563eb;
         }
 
-        .donate-box .heart {
-            color: #ef4444;
+        .donate-box .icon-svg svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .donate-box h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .donate-box p {
+            font-weight: 300;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .donate-btn {
@@ -294,7 +278,7 @@
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
         .donate-btn:hover {
             background: #1d4ed8;
@@ -324,8 +308,19 @@
             transform: translateY(-3px);
         }
         .donate-method .method-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 0.5rem auto;
+            color: #2563eb;
+        }
+        .donate-method .method-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
         .donate-method .method-name {
             font-weight: 700;
@@ -335,6 +330,7 @@
             font-size: 0.8rem;
             opacity: 0.6;
             font-weight: 300;
+            margin-top: 0.25rem;
         }
 
         footer {
@@ -354,9 +350,6 @@
         @media (max-width: 768px) {
             .glass-header {
                 padding: 0.6rem 1rem;
-            }
-            .header-search {
-                display: none;
             }
             .desktop-nav .nav-link:not(.theme-toggle-btn) {
                 display: none;
@@ -399,14 +392,6 @@
             </a>
         </div>
 
-        <div class="header-search">
-            <input type="text" id="globalSearch" class="search-input" placeholder="جستجو در فایل‌ها...">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-        </div>
-
         <div class="desktop-nav">
             <a href="https://moku.ir/" class="nav-link" target="_self">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 5l7 7-7 7M3 12h18"/></svg>
@@ -420,7 +405,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 <span>راهنما</span>
             </a>
-            <a href="https://dl.moku.ir/donate" class="nav-link active" target="_self">
+            <a href="https://donate.moku.ir/dlmoku" class="nav-link active" target="_self">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 <span>حمایت</span>
             </a>
@@ -456,7 +441,7 @@
                 </div>
                 <span>راهنما</span>
             </a>
-            <a href="https://dl.moku.ir/donate" class="bottom-nav-item active" target="_self">
+            <a href="https://donate.moku.ir/dlmoku" class="bottom-nav-item active" target="_self">
                 <div class="icon-wrapper">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </div>
@@ -470,29 +455,49 @@
     <h1>حمایت از <em>موکو دانلودر</em></h1>
     
     <div class="donate-box">
-        <div class="icon-big">❤️</div>
-        <h2 style="color:#2563eb;">ما را حمایت کنید</h2>
-        <p style="font-weight:300;max-width:500px;margin:0 auto;">
-            موکو دانلودر یک پروژه کاملاً رایگان و متن‌باز است. 
+        <div class="icon-svg">
+            <svg viewBox="0 0 24 24">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+        </div>
+        <h2>ما را حمایت کنید</h2>
+        <p>
+            موکو دانلودر یک پروژه کاملاً رایگان و متن‌باز است.
             حمایت شما به ما کمک می‌کند تا سرویس را بهبود بخشیم و آن را رایگان نگه داریم.
         </p>
     </div>
 
     <div class="donate-methods">
         <div class="donate-method">
-            <div class="method-icon">💳</div>
+            <div class="method-icon">
+                <svg viewBox="0 0 24 24">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                    <line x1="1" y1="10" x2="23" y2="10"/>
+                </svg>
+            </div>
             <div class="method-name">کارت بانکی</div>
             <div class="method-desc">شماره کارت: ۶۰۳۷ ۹۹۷۰ ۹۸۷۵ ۲۱۸۷</div>
         </div>
         
         <div class="donate-method">
-            <div class="method-icon">📱</div>
+            <div class="method-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+            </div>
             <div class="method-name">همراه کارت</div>
             <div class="method-desc">به شماره ۰۹۳۸ ۲۷۳ ۴۱۹۳</div>
         </div>
         
         <div class="donate-method">
-            <div class="method-icon">₿</div>
+            <div class="method-icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v2"/>
+                    <path d="M12 10v4"/>
+                    <path d="M12 16v2"/>
+                </svg>
+            </div>
             <div class="method-name">ارز دیجیتال</div>
             <div class="method-desc">TRC20: TYo... (تماس بگیرید)</div>
         </div>
@@ -500,8 +505,8 @@
 
     <div class="donate-box">
         <p style="font-weight:300;margin-bottom:1rem;">
-            اگر از موکو دانلودر استفاده می‌کنید و از آن راضی هستید، 
-            یک حمایت کوچک ما را خوشحال می‌کند! 🙏
+            اگر از موکو دانلودر استفاده می‌کنید و از آن راضی هستید،
+            یک حمایت کوچک ما را خوشحال می‌کند.
         </p>
         <a href="https://moku.ir/contact" class="donate-btn" target="_blank">
             ارتباط با ما
