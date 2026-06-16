@@ -59,7 +59,6 @@ def run_download(job_id, url, format_choice, format_id):
         job["file"] = chosen
         ext = os.path.splitext(chosen)[1]
         title = job.get("title", "").strip()
-        # Sanitize title for filename
         if title:
             safe_title = "".join(c for c in title if c not in r'\/:*?"<>|').strip()[:20].strip()
             job["filename"] = f"{safe_title}{ext}" if safe_title else os.path.basename(chosen)
@@ -78,6 +77,17 @@ def index():
     return render_template("index.html")
 
 
+# ========== صفحات جدید ==========
+@app.route("/help")
+def help_page():
+    return render_template("help.html")
+
+@app.route("/donate")
+def donate_page():
+    return render_template("donate.html")
+# =================================
+
+
 @app.route("/api/info", methods=["POST"])
 def get_info():
     data = request.json
@@ -93,7 +103,6 @@ def get_info():
 
         info = json.loads(result.stdout)
 
-        # Build quality options — keep best format per resolution
         best_by_height = {}
         for f in info.get("formats", []):
             height = f.get("height")
