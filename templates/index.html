@@ -1,31 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReClip — Free Media Downloader</title>
+  <title>موکو دانلودر — دانلودر رایگان رسانه</title>
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f4f1eb;
-      --fg: #3a3a38;
-      --accent: #e85d2a;
-      --accent-hover: #d04e1f;
-      --muted: #9c9889;
-      --card: #fff;
-      --card-border: #e2ded6;
-      --success: #2d8a4e;
-      --error: #c43d3d;
-      --radius: 14px;
-      --shimmer: linear-gradient(90deg, #ebe8e2 25%, #f0ede7 50%, #ebe8e2 75%);
+      --bg: #f0f4f8;
+      --fg: #1a2332;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #dbeafe;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --card-border: #e2e8f0;
+      --success: #16a34a;
+      --error: #dc2626;
+      --radius: 16px;
+      --shimmer: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Vazirmatn', sans-serif;
       background: var(--bg);
       color: var(--fg);
       min-height: 100vh;
@@ -43,38 +45,65 @@
     }
 
     .page {
-      max-width: 620px;
+      max-width: 680px;
       margin: 0 auto;
       padding: 60px 24px 80px;
     }
 
-    .brand { margin-bottom: 48px; }
+    .brand { margin-bottom: 48px; text-align: center; }
     .brand h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 4.2rem;
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      line-height: 1;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
       color: var(--fg);
+      position: relative;
+      display: inline-block;
     }
-    .brand h1 em { font-style: italic; color: var(--accent); }
+    .brand h1::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      right: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--accent);
+      opacity: 0.15;
+      border-radius: 4px;
+    }
+    .brand h1 em { 
+      font-style: normal;
+      color: var(--accent);
+      position: relative;
+    }
+    .brand h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
     .brand p {
-      margin-top: 10px;
-      font-size: 0.78rem;
+      margin-top: 12px;
+      font-size: 0.85rem;
       color: var(--muted);
       letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-weight: 300;
     }
 
     textarea {
       width: 100%;
       padding: 18px 20px;
-      border: 1.5px solid var(--card-border);
+      border: 2px solid var(--card-border);
       border-radius: var(--radius);
       background: var(--card);
       color: var(--fg);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.88rem;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.95rem;
       outline: none;
       resize: none;
       min-height: 56px;
@@ -83,15 +112,19 @@
     }
     textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(232, 93, 42, 0.08);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
     }
-    textarea::placeholder { color: var(--muted); }
+    textarea::placeholder { 
+      color: var(--muted);
+      font-weight: 300;
+    }
 
     .hint {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       color: var(--muted);
       margin-bottom: 20px;
       letter-spacing: 0.02em;
+      font-weight: 300;
     }
 
     .controls {
@@ -99,60 +132,80 @@
       gap: 10px;
       margin-bottom: 6px;
       align-items: center;
+      flex-wrap: wrap;
     }
     .pill-group {
       display: flex;
-      border: 1.5px solid var(--card-border);
-      border-radius: 10px;
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
       overflow: hidden;
       background: var(--card);
     }
     .pill {
-      padding: 9px 18px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.76rem;
+      padding: 10px 24px;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
       border: none;
       background: transparent;
       color: var(--muted);
       cursor: pointer;
       transition: all 0.2s;
       letter-spacing: 0.03em;
-      text-transform: uppercase;
     }
-    .pill.active { background: var(--fg); color: var(--bg); }
-    .pill:not(.active):hover { color: var(--fg); }
+    .pill.active { 
+      background: var(--accent); 
+      color: #fff; 
+    }
+    .pill:not(.active):hover { 
+      color: var(--fg); 
+      background: var(--accent-light);
+    }
 
     .fetch-btn {
       flex: 1;
-      padding: 10px 20px;
+      padding: 10px 24px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       background: var(--accent);
       color: #fff;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.82rem;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.9rem;
       font-weight: 500;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
+      transition: all 0.2s;
       letter-spacing: 0.04em;
-      text-transform: uppercase;
+      min-width: 100px;
     }
-    .fetch-btn:hover { background: var(--accent-hover); }
+    .fetch-btn:hover { 
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
     .fetch-btn:active { transform: scale(0.98); }
-    .fetch-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .fetch-btn:disabled { 
+      opacity: 0.6; 
+      cursor: not-allowed; 
+      transform: none;
+      box-shadow: none;
+    }
 
-    /* Cards */
     .cards { margin-top: 24px; }
 
     .card {
       display: flex;
-      gap: 14px;
-      border: 1.5px solid var(--card-border);
+      gap: 16px;
+      border: 2px solid var(--card-border);
       border-radius: var(--radius);
       background: var(--card);
-      padding: 14px;
-      margin-bottom: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
       animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
     }
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(12px); }
@@ -163,7 +216,7 @@
       width: 120px;
       min-width: 120px;
       height: 80px;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       background: var(--card-border);
       flex-shrink: 0;
@@ -175,7 +228,6 @@
       object-fit: cover;
       display: block;
     }
-    /* No-thumbnail icon */
     .card-thumb .no-thumb {
       width: 100%;
       height: 100%;
@@ -190,7 +242,6 @@
       opacity: 0.5;
     }
 
-    /* Shimmer skeleton for loading state */
     .card-thumb.loading {
       background: var(--shimmer);
       background-size: 200% 100%;
@@ -219,9 +270,10 @@
       justify-content: center;
     }
     .card-title {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Vazirmatn', sans-serif;
       font-size: 1rem;
-      line-height: 1.3;
+      font-weight: 700;
+      line-height: 1.4;
       color: var(--fg);
       margin-bottom: 2px;
       overflow: hidden;
@@ -229,11 +281,11 @@
       white-space: nowrap;
     }
     .card-meta {
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       color: var(--muted);
       letter-spacing: 0.03em;
-      text-transform: uppercase;
       margin-bottom: 8px;
+      font-weight: 300;
     }
 
     .card-actions {
@@ -244,54 +296,54 @@
     }
 
     .card-dl-btn {
-      padding: 6px 14px;
+      padding: 6px 16px;
       border: none;
-      border-radius: 7px;
+      border-radius: 8px;
       background: var(--fg);
       color: var(--bg);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.75rem;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
       letter-spacing: 0.03em;
-      text-transform: uppercase;
     }
-    .card-dl-btn:hover { background: #2d2d2a; }
+    .card-dl-btn:hover { background: #2d3748; }
     .card-dl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
     .card-dl-btn.done { background: var(--success); color: #fff; }
     .card-dl-btn.error { background: var(--error); color: #fff; }
 
     .card-status {
-      font-size: 0.68rem;
+      font-size: 0.75rem;
       color: var(--muted);
+      font-weight: 300;
     }
     .card-status.downloading { color: var(--accent); }
     .card-status.done { color: var(--success); }
     .card-status.error { color: var(--error); }
 
     .q-chip {
-      padding: 4px 10px;
-      border: 1.5px solid var(--card-border);
+      padding: 4px 12px;
+      border: 2px solid var(--card-border);
       border-radius: 6px;
       background: transparent;
       color: var(--muted);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
     }
     .q-chip.active {
-      border-color: var(--fg);
-      color: var(--fg);
-      background: rgba(26,26,24,0.04);
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
     }
     .q-chip:hover:not(.active) { border-color: var(--muted); }
 
-    /* Error card */
     .card.card-error {
-      border-color: rgba(196, 61, 61, 0.2);
-      background: rgba(196, 61, 61, 0.03);
+      border-color: rgba(220, 38, 38, 0.2);
+      background: rgba(220, 38, 38, 0.03);
     }
     .card-error-icon {
       width: 100%;
@@ -299,7 +351,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(196, 61, 61, 0.08);
+      background: rgba(220, 38, 38, 0.08);
       color: var(--error);
     }
     .card-error-icon svg {
@@ -307,19 +359,20 @@
       height: 24px;
     }
     .card-error-msg {
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       color: var(--error);
       margin-top: 2px;
       line-height: 1.4;
+      font-weight: 400;
     }
     .card-error-url {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       color: var(--muted);
       word-break: break-all;
       margin-top: 4px;
+      font-weight: 300;
     }
 
-    /* Download all bar */
     .dl-all-bar {
       display: flex;
       gap: 10px;
@@ -329,44 +382,53 @@
       flex: 1;
       padding: 12px;
       border: none;
-      border-radius: 10px;
-      background: var(--fg);
-      color: var(--bg);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.82rem;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Vazirmatn', sans-serif;
+      font-size: 0.9rem;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
       letter-spacing: 0.04em;
-      text-transform: uppercase;
     }
-    .dl-all-btn:hover { background: #2d2d2a; }
-    .dl-all-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .dl-all-btn:hover { 
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    .dl-all-btn:disabled { 
+      opacity: 0.6; 
+      cursor: not-allowed; 
+      transform: none;
+      box-shadow: none;
+    }
 
     .spin {
       display: inline-block;
-      width: 10px; height: 10px;
+      width: 12px;
+      height: 12px;
       border: 2px solid currentColor;
       border-right-color: transparent;
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
       vertical-align: middle;
+      margin-left: 6px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .footer {
       margin-top: 48px;
       text-align: center;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       color: var(--muted);
       letter-spacing: 0.05em;
-      text-transform: uppercase;
-      line-height: 1.8;
+      line-height: 2;
+      font-weight: 300;
     }
 
-    /* Mobile */
     @media (max-width: 500px) {
-      .brand h1 { font-size: 3rem; }
+      .brand h1 { font-size: 2.8rem; }
       .page { padding: 40px 16px 60px; }
       .card { flex-direction: column; gap: 10px; }
       .card-thumb {
@@ -377,33 +439,35 @@
       .card-title { white-space: normal; }
       .controls { flex-wrap: wrap; }
       .fetch-btn { width: 100%; }
+      .brand h1::after { bottom: 2px; height: 6px; }
+      .brand h1 em::after { bottom: 1px; height: 3px; }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <div class="brand">
-      <h1>Re<em>Clip</em></h1>
-      <p>Free media downloader</p>
+      <h1>موکو <em>دانلودر</em></h1>
+      <p>دانلودر رایگان رسانه</p>
     </div>
 
-    <textarea id="urls" placeholder="Paste one or more URLs..." rows="2"></textarea>
-    <p class="hint">Multiple links? Separate with spaces, commas, or newlines.</p>
+    <textarea id="urls" placeholder="لینک‌های مورد نظر را وارد کنید..." rows="2"></textarea>
+    <p class="hint">چند لینک؟ با فاصله، کاما یا خط جدید جدا کنید.</p>
 
     <div class="controls">
       <div class="pill-group">
         <button class="pill active" data-format="video" onclick="setFormat(this)">MP4</button>
         <button class="pill" data-format="audio" onclick="setFormat(this)">MP3</button>
       </div>
-      <button class="fetch-btn" id="goBtn" onclick="go()">Fetch</button>
+      <button class="fetch-btn" id="goBtn" onclick="go()">دریافت</button>
     </div>
 
     <div id="cards" class="cards"></div>
 
     <div class="footer">
-      YouTube &middot; TikTok &middot; Instagram &middot; Twitter/X &middot; Reddit &middot; Facebook<br>
-      Vimeo &middot; Twitch &middot; Dailymotion &middot; SoundCloud &middot; Loom &middot; Streamable<br>
-      Pinterest &middot; Tumblr &middot; Threads &middot; LinkedIn &middot; 1000+ more
+      یوتیوب · تیک‌تاک · اینستاگرام · توییتر/ایکس · ردیت · فیسبوک<br>
+      ویمئو · توئیچ · دیلی موشن · ساندکلاود · لوم · استریمبل<br>
+      پینترست · تامبلر · تریدز · لینکدین · بیش از ۱۰۰۰ سایت دیگر
     </div>
   </div>
 
@@ -435,15 +499,15 @@
     }
 
     function friendlyError(err) {
-      if (err.includes('Unsupported URL')) return 'This URL is not supported';
-      if (err.includes('Video unavailable')) return 'Video is unavailable or private';
-      if (err.includes('Private video')) return 'This video is private';
-      if (err.includes('HTTP Error 403')) return 'Access denied by the platform';
-      if (err.includes('HTTP Error 404')) return 'Video not found';
-      if (err.includes('copyright')) return 'Video blocked due to copyright';
-      if (err.includes('geo')) return 'Video not available in your region';
-      if (err.includes('timed out') || err.includes('Timed out')) return 'Request timed out — try again';
-      if (err.includes('network') || err.includes('Network')) return 'Network error — check your connection';
+      if (err.includes('Unsupported URL')) return 'این لینک پشتیبانی نمی‌شود';
+      if (err.includes('Video unavailable')) return 'ویدئو در دسترس نیست یا خصوصی است';
+      if (err.includes('Private video')) return 'این ویدئو خصوصی است';
+      if (err.includes('HTTP Error 403')) return 'دسترسی توسط سایت مسدود شده';
+      if (err.includes('HTTP Error 404')) return 'ویدئو پیدا نشد';
+      if (err.includes('copyright')) return 'ویدئو به دلیل کپی‌رایت مسدود شده';
+      if (err.includes('geo')) return 'ویدئو در منطقه شما در دسترس نیست';
+      if (err.includes('timed out') || err.includes('Timed out')) return 'زمان درخواست تمام شد — دوباره تلاش کنید';
+      if (err.includes('network') || err.includes('Network')) return 'خطای شبکه — اتصال خود را بررسی کنید';
       return err.length > 80 ? err.slice(0, 80) + '...' : err;
     }
 
@@ -458,7 +522,7 @@
       const btn = document.getElementById('goBtn');
       const container = document.getElementById('cards');
       btn.disabled = true;
-      btn.textContent = 'Loading...';
+      btn.textContent = 'در حال بارگذاری...';
       container.innerHTML = '';
       cardData = [];
 
@@ -500,7 +564,7 @@
       }
 
       btn.disabled = false;
-      btn.textContent = 'Fetch';
+      btn.textContent = 'دریافت';
     }
 
     function renderCard(idx) {
@@ -513,7 +577,6 @@
         document.getElementById('cards').appendChild(el);
       }
 
-      // Loading skeleton
       if (c.status === 'loading') {
         el.className = 'card';
         el.innerHTML = `
@@ -526,7 +589,6 @@
         return;
       }
 
-      // Error state
       if (c.status === 'info-error') {
         el.className = 'card card-error';
         el.innerHTML = `
@@ -536,7 +598,7 @@
             </div>
           </div>
           <div class="card-body">
-            <div class="card-title" style="color:var(--error)">Could not fetch video</div>
+            <div class="card-title" style="color:var(--error)">دریافت نشد</div>
             <div class="card-error-msg">${esc(friendlyError(c.error || ''))}</div>
             <div class="card-error-url">${esc(c.url)}</div>
           </div>
@@ -544,7 +606,6 @@
         return;
       }
 
-      // Ready / downloading / done / error states
       el.className = 'card';
       const isAudio = currentFormat === 'audio';
 
@@ -566,21 +627,21 @@
 
       let actionHtml = '';
       if (c.status === 'ready') {
-        actionHtml = `<button class="card-dl-btn" onclick="dlCard(${idx})">Download</button>${qualityChips}`;
+        actionHtml = `<button class="card-dl-btn" onclick="dlCard(${idx})">دانلود</button>${qualityChips}`;
       } else if (c.status === 'downloading') {
-        actionHtml = `<span class="card-status downloading"><span class="spin"></span> Downloading...</span>`;
+        actionHtml = `<span class="card-status downloading"><span class="spin"></span> در حال دانلود...</span>`;
       } else if (c.status === 'done') {
-        actionHtml = `<button class="card-dl-btn done" onclick="saveCard(${idx})">Save</button>
+        actionHtml = `<button class="card-dl-btn done" onclick="saveCard(${idx})">ذخیره</button>
           <span class="card-status done">${esc(c.filename || '')}</span>`;
       } else if (c.status === 'error') {
-        actionHtml = `<button class="card-dl-btn" onclick="dlCard(${idx})">Retry</button>
-          <span class="card-status error">${esc(friendlyError(c.error || 'Download failed'))}</span>`;
+        actionHtml = `<button class="card-dl-btn" onclick="dlCard(${idx})">تلاش مجدد</button>
+          <span class="card-status error">${esc(friendlyError(c.error || 'دانلود ناموفق'))}</span>`;
       }
 
       el.innerHTML = `
         <div class="card-thumb">${thumbHtml}</div>
         <div class="card-body">
-          <div class="card-title">${esc(c.title || 'Untitled')}</div>
+          <div class="card-title">${esc(c.title || 'بدون عنوان')}</div>
           <div class="card-meta">${esc(c.uploader)}${c.duration ? ' · ' + fmtDur(c.duration) : ''}</div>
           <div class="card-actions">${actionHtml}</div>
         </div>
@@ -594,7 +655,7 @@
       const bar = document.createElement('div');
       bar.id = 'dl-all-bar';
       bar.className = 'dl-all-bar';
-      bar.innerHTML = `<button class="dl-all-btn" onclick="dlAll()">Download All</button>`;
+      bar.innerHTML = `<button class="dl-all-btn" onclick="dlAll()">دانلود همه</button>`;
       document.getElementById('cards').appendChild(bar);
     }
 
@@ -657,7 +718,7 @@
         } catch {
           clearInterval(iv);
           c.status = 'error';
-          c.error = 'Lost connection to server';
+          c.error = 'ارتباط با سرور قطع شد';
           renderCard(idx);
         }
       }, 1000);
@@ -674,7 +735,7 @@
 
     async function dlAll() {
       const btn = document.querySelector('.dl-all-btn');
-      if (btn) { btn.disabled = true; btn.textContent = 'Downloading...'; }
+      if (btn) { btn.disabled = true; btn.textContent = 'در حال دانلود...'; }
 
       for (let i = 0; i < cardData.length; i++) {
         if (cardData[i].status === 'ready') {
@@ -682,7 +743,7 @@
         }
       }
 
-      if (btn) { btn.disabled = false; btn.textContent = 'Download All'; }
+      if (btn) { btn.disabled = false; btn.textContent = 'دانلود همه'; }
     }
   </script>
 </body>
